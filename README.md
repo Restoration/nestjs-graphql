@@ -1,9 +1,11 @@
 # README
 
-Nest.jsとGraphQLを使用したテストリポジトリ
+Nest.jsとGraphQLを使用したテストリポジトリ。スキーマ駆動開発用。
 
 ## 立ち上げ
 ```
+$ make init
+$ make docker
 $ yarn start:dev
 ```
 
