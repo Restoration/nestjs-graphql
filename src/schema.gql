@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type ToDo {
+  id: ID!
+  name: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  todos: [ToDo!]!
+  getToDo(id: Int!): ToDo!
+}
+
+type Mutation {
+  addToDo(newBook: todoValidate!): ToDo!
+  removeToDo(id: Int!): Boolean!
+}
+
+input todoValidate {
+  name: String!
+}
