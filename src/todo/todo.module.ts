@@ -3,6 +3,6 @@ import { TodoResolver } from './todo.resolver';
 import { ToDoService } from './todo.service';
 
 @Module({
-  providers: [TodoResolver, ToDoService]
+  providers: [TodoResolver, ToDoService],
 })
 export class TodoModule {}
