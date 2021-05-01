@@ -6,6 +6,9 @@ Nest.jsとGraphQLを使用したテストリポジトリ。スキーマ駆動開
 ```
 $ make init
 $ make docker
+$ yarn
+$ yarn build
+$ yarn migration:run
 $ yarn start:dev
 ```
 
