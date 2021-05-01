@@ -4,16 +4,16 @@ import { ToDo } from './todo.schema';
 import { ToDoService } from './todo.service';
 import { todoValidate } from './todo.validation';
 
-@Resolver((of) => ToDo)
+@Resolver(() => ToDo)
 export class TodoResolver {
   constructor(private todoService: ToDoService) {}
 
-  @Query((returns) => [ToDo])
+  @Query(() => [ToDo])
   todos(): Promise<ToDo[]> {
     return this.todoService.findAll();
   }
 
-  @Query((returns) => ToDo)
+  @Query(() => ToDo)
   async getToDo(@Args({ name: 'id', type: () => Int }) id: number) {
     const todo = await this.todoService.findOneById(id);
     if (!todo) {
@@ -22,12 +22,12 @@ export class TodoResolver {
     return todo;
   }
 
-  @Mutation((returns) => ToDo)
+  @Mutation(() => ToDo)
   addToDo(@Args('addToDo') newTodo: todoValidate): Promise<ToDo> {
     return this.todoService.create(newTodo);
   }
 
-  @Mutation((returns) => Boolean)
+  @Mutation(() => Boolean)
   async removeToDo(@Args({ name: 'id', type: () => Int }) id: number) {
     return this.todoService.remove(id);
   }
