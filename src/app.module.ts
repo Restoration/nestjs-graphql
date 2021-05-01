@@ -5,6 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoModule } from './todo/todo.module';
+import { ToDo } from './todo/todo.schema';
 require('dotenv').config()
 
 @Module({
@@ -12,16 +13,7 @@ require('dotenv').config()
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.MYSQL_HOST,
-      port: Number(process.env.MYSQL_PORT),
-      username: process.env.MYSQL_USERNAME,
-      password: process.env.MYSQL_PASSWORD,
-      database: process.env.MYSQL_DATABASE_NAME,
-      entities: [],
-      synchronize: true,
-    }),
+    TypeOrmModule.forRoot({entities: [ToDo]}),
     TodoModule,
   ],
   controllers: [AppController],
