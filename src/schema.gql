@@ -19,7 +19,7 @@ type Query {
 }
 
 type Mutation {
-  addToDo(newBook: todoValidate!): ToDo!
+  addToDo(addToDo: todoValidate!): ToDo!
   removeToDo(id: Int!): Boolean!
 }
 

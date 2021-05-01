@@ -6,29 +6,29 @@ import { todoValidate } from './todo.validation';
 
 @Resolver((of) => ToDo)
 export class TodoResolver {
-  constructor(private booksService: ToDoService) {}
+  constructor(private todoService: ToDoService) {}
 
   @Query((returns) => [ToDo])
   todos(): Promise<ToDo[]> {
-    return this.booksService.findAll();
+    return this.todoService.findAll();
   }
 
   @Query((returns) => ToDo)
   async getToDo(@Args({ name: 'id', type: () => Int }) id: number) {
-    const book = await this.booksService.findOneById(id);
-    if (!book) {
+    const todo = await this.todoService.findOneById(id);
+    if (!todo) {
       throw new NotFoundException(id);
     }
-    return book;
+    return todo;
   }
 
   @Mutation((returns) => ToDo)
-  addToDo(@Args('newBook') newBook: todoValidate): Promise<ToDo> {
-    return this.booksService.create(newBook);
+  addToDo(@Args('addToDo') newTodo: todoValidate): Promise<ToDo> {
+    return this.todoService.create(newTodo);
   }
 
   @Mutation((returns) => Boolean)
   async removeToDo(@Args({ name: 'id', type: () => Int }) id: number) {
-    return this.booksService.remove(id);
+    return this.todoService.remove(id);
   }
 }
